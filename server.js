@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname, "pics")));
 app.get("/hello",(req,res)=> {
     res.send("hello");
 })
-app.get("/hey",(req,res)=>{
+app.get("/new",(req,res)=>{
 res.send("server is running")
 })
 
