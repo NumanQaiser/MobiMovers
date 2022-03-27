@@ -9,7 +9,7 @@ const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app=express();
-const port =process.env.PORT || 6000;
+const port =process.env.PORT || 5000;
 
 //mongoDB connection setup
 mongoose.connect("mongodb+srv://kingitsol:kingitsol!!22@cluster0.mymqp.mongodb.net/FoodApp?retryWrites=true&w=majority",{

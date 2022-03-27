@@ -8,7 +8,7 @@ const { packageBook } = require("../Models/Package/PackageSchma");
 
 const storage =  multer.diskStorage({
     destination:(req,file,cb) => {
-        cb(null,"./Assests/Riders");
+        cb(null,"./Assests/Riders/Profiles");
     },
     filename:(req,file,cb) => {
         cb(null,Date.now()+"--"+path.extname(file.originalname));
