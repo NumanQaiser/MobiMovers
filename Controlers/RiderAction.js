@@ -5,6 +5,7 @@ const multer = require("multer");
 const nodemailer = require("nodemailer");
 const bcryptjs = require("bcryptjs");
 const { packageBook } = require("../Models/Package/PackageSchma");
+const { img } = require("../Models/Rider/Image");
 
 const storage =  multer.diskStorage({
     destination:(req,file,cb) => {
@@ -22,10 +23,43 @@ const imageRider = multer({
     }
 });
 
+const  Image = async (req,res) => {
 
+    try {
+        const file = req.file.filename;
+        // let paths = [];
+        // for (var a = 0; a < files?.length;a++) {
+        //  paths?.push(files[a]?.path);
+        // }
+        res.status(200).json({
+          success:true,
+          data:"/Assests/Riders/Profiles/"+file
+        })
+      } catch(e) {
+        res.status(400).json({
+          success:false,
+          message:'something went wrong'
+        })
+      }
+    // const i = await img({
+    //     RiderImage:req.file.filename
+    // })
 
+    // //saving the data into database
+    // i.save().then((output) => {
+    //     // res.send("user");
+    //     res.send(output);
+    //     res.send({Response: output, mesage: "Rider  image saved " });
+
+    // }).catch((err) => {
+    //     res.send({ Error: err, mesage: "Error in saving Rider image " });
+        
+    // })
+
+}
 const createRider = async (req, res) => {
 
+    
     if (req.body.Password == req.body.Confirm) {
         const r = await Rider({
             Name: req.body.Name,
@@ -34,7 +68,8 @@ const createRider = async (req, res) => {
             Password: req.body.Password,
             Confirm: req.body.Confirm,
             Convance: req.body.Convance,
-            Image:req.file.filename
+            Image:req.file.filename,
+            
         });
 
 
@@ -496,6 +531,7 @@ const historyOfBookedRides =(req,res)=> {
 module.exports = {
     createRider,
     imageRider,
+    Image,
     riderLogin,
     createOTP,
     checkOTP,

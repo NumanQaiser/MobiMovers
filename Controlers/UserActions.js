@@ -67,6 +67,24 @@ const imageUser = multer({
 });
 
 
+const  UserImage = async (req,res) => {
+
+    try {
+        const file = req.file.filename;
+     
+        res.status(200).json({
+          success:true,
+          data:"/Assests/Users/"+file
+        })
+      } catch(e) {
+        res.status(400).json({
+          success:false,
+          message:'something went wrong'
+        })
+      }
+
+}
+
 //for creatin user mean for signUP page
 const createUser = async (req, res) => {
   
@@ -363,6 +381,7 @@ module.exports = {
     deleteRide,
     Userprofile,
     updateProfile,
-    UserNotification
+    UserNotification,
+    UserImage
    
 }

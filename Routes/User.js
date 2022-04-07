@@ -1,14 +1,17 @@
 const express = require("express");
 const { checkToken } = require("../Authentication/authmiddleRoutes.js");
 // const { sendTokenID } = require("../Authentication/UserAuth");
-const { createUser,loginUser,UserNotification,Userprofile,updateProfile ,deleteRide,checkUserOtp,showUsers,userRides,userBlock,blockedUser, imageUser} = require("../Controlers/UserActions");
+const { createUser,loginUser,UserImage,UserNotification,Userprofile,updateProfile ,deleteRide,checkUserOtp,showUsers,userRides,userBlock,blockedUser, imageUser} = require("../Controlers/UserActions");
 const router = express.Router();
 
 
-//this route for createing the user into database (SignUP)
+//this is for upload single image
 //here we pass the middleware of storing image which the image who has the name is Profile
 const single = imageUser.single("Profile");
-router.post("/createUser",single,createUser);
+router.post("/imageOfUser",single,UserImage);
+
+//this route for createing the user into database (SignUP)
+router.post("/createUser",createUser);
 
 //this route for login the user
 router.post("/login",loginUser);

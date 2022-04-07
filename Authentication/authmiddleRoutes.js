@@ -1,6 +1,6 @@
 
-const jwt  = require("jsonwebtoken");
 const { sendTokenID } = require("./UserAuth");
+const jwt = require("jsonwebtoken")
 
 //here we are creating the token for login user verification
 const createToken = (id) => {
