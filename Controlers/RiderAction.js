@@ -68,7 +68,7 @@ const createRider = async (req, res) => {
             Password: req.body.Password,
             Confirm: req.body.Confirm,
             Convance: req.body.Convance,
-            Image:req.file.filename,
+            Image:req.body.filename,
             
         });
 

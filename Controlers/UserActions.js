@@ -98,33 +98,34 @@ const createUser = async (req, res) => {
         Phone: req.body.Phone,
         Password: hashPass,
         Confirm: req.body.Confirm,
-        Image:req.file.filename
+        Image:req.body.filename
     });
     
     //saving all data into database
     if (req.body.Password == req.body.Confirm) {
 
         user.save().then(async (data) => {
-            // creating the random number
-            const otp = Math.floor(Math.random() * 10000 + 1);
-            if (otp < 999) {
-                otp = Math.floor(Math.random() * 10000 + 1);
-            }
-            //for sending the Email 
-            sendOTP(req.body.Email, otp);
-            const saveOTP = await UserOtpSchema({
-                otpCode: otp,
-                userID: data._id,
-                expireIn: new Date().getTime() + 300 * 1000,
-            })
-            saveOTP.save().then((response) => {
+            // // creating the random number
+            // const otp = Math.floor(Math.random() * 10000 + 1);
+            // if (otp < 999) {
+            //     otp = Math.floor(Math.random() * 10000 + 1);
+            // }
+            // //for sending the Email 
+            // sendOTP(req.body.Email, otp);
+            // const saveOTP = await UserOtpSchema({
+            //     otpCode: otp,
+            //     userID: data._id,
+            //     expireIn: new Date().getTime() + 300 * 1000,
+            // })
+            // saveOTP.save().then((response) => {
 
-                res.send({ Data: response, message: "Data has been saved of user and otp . " });
+            //     res.send({ Data: response, message: "Data has been saved of user and otp . " });
 
-            }).catch(err => {
-                console.log("Error in sending user otp :", err);
-                res.send({ Error: err, message: "Error in sending user otp" });
-            })
+            // }).catch(err => {
+            //     console.log("Error in sending user otp :", err);
+            //     res.send({ Error: err, message: "Error in sending user otp" });
+            // })
+            res.send({ Data: data, message: "Data has been saved of user . " });
 
         }).catch(err => {
             console.log("Error in saving user data :", err);
